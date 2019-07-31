@@ -2,17 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const UserSchema = new Schema({
+const ChildSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true
@@ -23,4 +14,4 @@ const UserSchema = new Schema({
     }
 });
 
-module.exports = Item = mongoose.model('user', UserSchema);
+module.exports = Item = mongoose.model('child', ChildSchema);
