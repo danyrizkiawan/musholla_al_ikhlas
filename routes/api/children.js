@@ -28,27 +28,24 @@ router.post("/add", (req, res) => {
     newChild
         .save()
         .then(child =>
-            res.json({
-                message: "Child Added",
-                child
-            })
+            res.json(child)
         )
         .catch(error => res.json(error));
 });
 
-// @route   DELETE api/child/:id
+// @route   DELETE api/children/:id
 // @desc    Delete A Child
 // @access  Public
 router.delete("/:id", (req, res) => {
     const id = req.params.id;
 
-    Child.find({
+    /* Child.find({
             _id: id
         })
         .then(child => {
             Child.findByIdAndDelete(child[0]._id).then(() =>
                 res.status(200).json({
-                    message: "Child deleted"
+                    success: true
                 })
             );
         })
@@ -56,7 +53,10 @@ router.delete("/:id", (req, res) => {
             res.status(404).json({
                 message: "Child not found"
             })
-        );
+        ); */
+    Child.findById(id)
+        .then(child => child.remove().then(() => res.json({ success:true })))
+        .catch(err => res.status(404).json({success: false}));
 });
 
 module.exports = router;
